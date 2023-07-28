@@ -1,0 +1,26 @@
+
+                      {%- for i in (1..9) -%}
+
+                        {%- capture instagram_url -%}instagram_url{{ i }}{%- endcapture -%}
+                        {%- capture cap_feed_image -%}feed_{{ i }}{%- endcapture -%}
+                        {%- liquid
+                           assign instagram_link = block.settings[instagram_url] 
+                           assign cap_feed_image = block.settings[cap_feed_image] 
+                        %}
+                        <li>
+                          <a href="{{instagram_link}}" target="_blank">
+                            
+                            {%- if cap_feed_image != blank -%}
+                              <div class="img-wrap">
+                              <img src="{{cap_feed_image | img_url:"master"}}" alt=""/>
+                              </div>
+                              {%- else -%}
+                              <div class="placeholder-background ">
+                                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg gray-bg placeholder-100' }}
+                              </div>
+                          {%- endif -%}
+      
+                        </a>
+                      </li>
+                      
+                      {%- endfor -%}   
